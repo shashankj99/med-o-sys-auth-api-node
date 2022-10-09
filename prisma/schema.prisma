@@ -6,3 +6,25 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum Gender {
+  male
+  female
+  others
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  first_name String
+  middle_name String?
+  last_name String
+  email String @unique
+  mobile String @db.VarChar(15) @unique
+  password String?
+  gender Gender
+  dob DateTime
+  status Boolean @default(false)
+  avatar String?
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+}
